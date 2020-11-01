@@ -3,10 +3,10 @@ using System.Text;
 
 namespace Animals
 {
+   
     public abstract class Animal
     {
         private const string ERROR_MSG = "Invalid input!";
-
         private string name;
         private int age;
         private string gender;
@@ -26,7 +26,7 @@ namespace Animals
                 {
                     throw new ArgumentException(ERROR_MSG);
                 }
-                this.Name = value;
+                this.name = value;
             }
         }
         public int Age
