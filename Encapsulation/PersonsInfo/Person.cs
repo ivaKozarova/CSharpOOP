@@ -24,8 +24,10 @@ namespace PersonsInfo
                 if (value.Length < 3)
                 {
                     throw new ArgumentException("First name cannot contain fewer than 3 symbols!");
+
                 }
                 this.firstName = value;
+
             }
         }
         public string LastName
@@ -57,9 +59,10 @@ namespace PersonsInfo
             get { return this.salary; }
             private set
             {
-                if(value  < 460)
+                if (value < 460)
                 {
                     throw new ArgumentException("Salary cannot be less than 460 leva!");
+
                 }
                 this.salary = value;
             }
