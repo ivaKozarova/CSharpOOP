@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualBasic;
 using System;
+using System.Runtime.CompilerServices;
 
 namespace BoxData
 {
@@ -53,18 +54,20 @@ namespace BoxData
             }
         }
 
-        public string SurfaceArea()
+        public double SurfaceArea()
         {
-            
-            return $"Surface Area - {this.Length * this.Width}";
+            var surfaceArea = 2 * this.Length * this.Width + 2 * this.Length * this.Height + 2 * this.Width * this.Height;
+            return surfaceArea;
         }
-        public string LateralSurfaceArea()
+        public double LateralSurfaceArea()
         {
-            return $"Lateral Surface Area - {this.Length * this.Height}";
+            var lateralSurfaceArea =  2 * this.Length * this.Height + 2 * this.Width * this.Height;
+            return lateralSurfaceArea;
         }
-        public string Volume()
+        public double Volume()
         {
-            return $"Volume - {this.Length * this.Width * this.Height}";
+            var volume = this.Length * this.Width * this.Height;
+            return volume;
         }
     }
 }
