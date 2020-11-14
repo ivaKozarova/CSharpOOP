@@ -1,13 +1,14 @@
-﻿using FootballTeamGenerator.Common;
-using System;
+﻿using System;
 
-namespace FootballTeamGenerator.Models
+using P05.FootballTeamGenerator.Common.Exceptions;
+
+namespace P05.FootballTeamGenerator.Models
 {
     public class Stats
     {
         private const int MIN_STAT = 0;
         private const int MAX_STAT = 100;
-        private const int COUNT_OF_STAT = 5;
+        private const int COUNT_OF_STATS = 5;
 
         private int endurance;
         private int sprint;
@@ -27,25 +28,25 @@ namespace FootballTeamGenerator.Models
             get { return this.endurance; }
             private set
             {
-                this.ValidateStat(nameof(Endurance), value);
+                ValidateStat(nameof(Endurance), value);
                 this.endurance = value;
             }
         }
         public int Sprint
         {
             get { return this.sprint; }
-            private set
+           private set
             {
-                this.ValidateStat(nameof(Sprint), value);
+                ValidateStat(nameof(Sprint), value);
                 this.sprint = value;
             }
         }
         public int Dribble
         {
             get { return this.dribble; }
-            private set
+           private  set
             {
-                this.ValidateStat(nameof(Dribble), value);
+                ValidateStat(nameof(Dribble), value);
                 this.dribble = value;
             }
         }
@@ -54,32 +55,30 @@ namespace FootballTeamGenerator.Models
             get { return this.passing; }
             private set
             {
-               this.ValidateStat(nameof(Passing), value);
+                ValidateStat(nameof(Passing), value);
                 this.passing = value;
             }
-            
         }
         public int Shooting
         {
             get { return this.shooting; }
             private set
             {
-                this.ValidateStat(nameof(Shooting), value);
+                ValidateStat(nameof(Shooting), value);
                 this.shooting = value;
             }
         }
-        public double AverageStat => (this.Endurance + this.Dribble
-            + this.Passing + this.Shooting + this.Sprint) /(double) COUNT_OF_STAT;
-        private void ValidateStat(string name, int value)
+        public double OverallSkillLevel
+                         => (this.Endurance + this.Sprint + this.Passing + this.Shooting + this.Dribble)
+                            / (double)COUNT_OF_STATS;
+        private void ValidateStat(string name, int stat)
         {
-            if (MIN_STAT > value || value > MAX_STAT)
+            if (MIN_STAT > stat || stat > MAX_STAT)
             {
-                throw new ArgumentException(string.Format(GlobalConstants.InvalidStatExcMsg,
-                    name, MIN_STAT, MAX_STAT));
+                throw new ArgumentException(String.Format(ExceptionMessages.InvalidStatValue,
+                        name, MIN_STAT, MAX_STAT));
             }
 
         }
     }
 }
-
-
