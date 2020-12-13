@@ -118,6 +118,7 @@ namespace EasterRaces.Core.Entities
             {
                 throw new InvalidOperationException(String.Format(ExceptionMessages.RaceInvalid, raceName, MIN_COUNT_OF_DRIVERS));
             }
+            this.raceRepository.Remove(this.raceRepository.GetByName(raceName));
 
             var winners = race.Drivers.OrderByDescending(d => d.Car.CalculateRacePoints(race.Laps)).Take(3).ToList();
 
